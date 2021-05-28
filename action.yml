@@ -28,10 +28,13 @@ inputs:
     default: "Kustomization,Component"
   ignored_paths:
     description: "Pattern for the path to ignore"
-    default: ".github/*,.flux.yaml,kustomization.yaml"
+    default: ".github/*"
+  ignored_filenames:
+    description: "Filenames to ignore"
+    default: ".flux.yaml,kustomization.yaml"
 runs:
   using: 'docker'
-  image: 'docker://garethr/kubeval:latest'
+  image: 'docker://rajshekhar17/kubeval:latest'
   args:
   - -d
   - ${{ inputs.files }} 
@@ -43,4 +46,5 @@ runs:
   - --openshift=${{ inputs.openshift }}
   - --ignore-missing-schemas=${{ inputs.ignore_missing_schemas }}
   - --skip-kinds=${{ inputs.skip_kinds }}
-  - --ignored-filename-patterns=${{ inputs.ignored_paths }}
+  - --ignored-filename-patterns=${{ inputs.ignored_filenames }}
+  - --ignored-path-patterns=${{ inputs.ignored_paths }}
