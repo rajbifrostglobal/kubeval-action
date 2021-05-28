@@ -43,4 +43,4 @@ runs:
   - --openshift=${{ inputs.openshift }}
   - --ignore-missing-schemas=${{ inputs.ignore_missing_schemas }}
   - --skip-kinds=${{ inputs.skip_kinds }}
-  - --ignored-filename-patterns=${ inputs.ignored_paths }
+  - --ignored-filename-patterns=${{ inputs.ignored_paths }}
