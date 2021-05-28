@@ -26,6 +26,9 @@ inputs:
   skip_kinds:
     description: "Kinds of resources to skip validation for"
     default: "Kustomization,Component"
+  ignored_paths:
+    description: "Pattern for the path to ignore"
+    default: ".github/*,.flux.yaml"
 runs:
   using: 'docker'
   image: 'docker://garethr/kubeval:latest'
@@ -40,4 +43,4 @@ runs:
   - --openshift=${{ inputs.openshift }}
   - --ignore-missing-schemas=${{ inputs.ignore_missing_schemas }}
   - --skip-kinds=${{ inputs.skip_kinds }}
-
+  - --ignored-filename-patterns=${ inputs.ignored_paths }
